@@ -1,0 +1,53 @@
+.container.py-3
+  %h5 メンバー追加用URL
+  %p 以下のURLを招待したい人に教えてあげてください
+  = text_field_tag :url, new_team_invitations_url(team_token: @team.token), class: 'form-control mb-3', readonly: true, onclick: 'this.selectionStart=0; this.selectionEnd=this.value.length;'
+
+
+  %table.table.table-bordered.strength-table
+    %tr
+      %th ユーザー名
+      - (1..5).each do |index|
+        %th= index
+    - @users.each do |user|
+      - strengths = user.strengths.order(:position).limit(5)
+      - if strengths.count == 5
+        %tr
+          %td.strength-table__user-cell{width: 200}
+            = image_tag user.icon_url
+            = user.name
+          - strengths.each do |strength|
+            %td.strength-table__cell.js-strength{data: {value: strength.nature}, width: 200, style: "background: #{strength.color}"}= strength.nature
+
+  %table.table.table-bordered.table-sm
+    %thead
+      %tr
+        - Strength::CATEGORY.keys.each do |key|
+          %th{style: "background: #{Strength.category_color(key)}"}= key
+    %tbody
+      - (0..8).each do |index|
+        %tr
+          - Strength::CATEGORY.values.each do |values|
+            %td.strength-table__cell.js-strength{data: {value: values[index]}}
+              = values[index]
+              - if users = @users.where(id: Strength.where(user: @users, nature: values[index]).select(:user_id)).order(:id) and users.size > 0
+                %span
+                  (#{users.size})
+
+:coffee
+  $ ->
+    $('.js-strength').on 'click', ->
+      if $('.js-strength.is-selected').length > 0
+        $('.js-strength').removeClass('is-selected').removeClass('is-unselected')
+        return
+      clickStrength = $(@).data('value')
+      $tds = $('.js-strength')
+      i = 0
+      while i < $tds.length
+        $td = $($tds[i])
+        if $td.data('value') == clickStrength
+          $td.addClass('is-selected')
+        else
+          $td.addClass('is-unselected')
+        i++
+      return

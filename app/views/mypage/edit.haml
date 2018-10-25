@@ -1,0 +1,15 @@
+.container.py-3
+  .col-md-6.offset-md-3
+    %p あなたの強みを登録してください。ストレングスファインダーは以下のアプリから行うことができます。
+    %p
+      = link_to 'Android版', 'https://play.google.com/store/apps/details?id=com.gallup.strengthsfinder&hl=ja', target: '_blank', class: 'mr-3'
+      = link_to 'iOS版', 'https://itunes.apple.com/jp/app/cliftonstrengths/id650833234?mt=8', target: '_blank'
+    .card.card-block
+      .card-body
+        = simple_form_for(@user, url: mypage_path, method: :patch) do |f|
+          = f.error_notification
+          #js-strengths
+            = f.simple_fields_for :strengths do |strength|
+              = render 'strength_fields', f: strength
+          .text-center.pr-5.pl-5
+            = f.button :submit, '強みを登録する', class: 'btn btn-primary btn-lg btn-block', data: { disable_with: t('views.sending', rescue_format: :text) }

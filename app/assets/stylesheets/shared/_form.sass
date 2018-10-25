@@ -1,0 +1,62 @@
+.form-control
+  color: #000
+
+select.form-control
+  height: 29px
+
+select.date, select.datetime
+  width: 100px
+  display: inline-block
+
+.form-group.boolean
+  .controls
+    display: inline-block
+    margin-left: 10px
+.radio, .checkbox
+  display: inline-block
+  margin-bottom: 0
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]
+  position: initial
+  margin-top: 0
+  margin-left: 0
+
+.radio
+  > label
+    margin-right: 10px
+  input[type="radio"]
+    margin-right: 4px
+.file
+  position: initial
+  display: block
+  height: auto
+  cursor: default
+
+.file input
+  min-width: 0
+  margin: 0
+  filter: none
+  opacity: 1
+
+textarea.form-control.is-lg
+  min-height: 10em
+
+.form-group.is-vertical-checkboxes
+  .control-label
+    width: 100%
+  .checkbox
+    display: block
+    margin-left: 20px
+    margin-bottom: 4px
+    position: relative
+    input
+      position: absolute
+      top: 4px
+      left: -20px
+
+.collection_radio_buttons
+  margin-right: 10px
+  padding: 2px
+
+.help-block
+  @extend .badge
+  @extend .badge-danger

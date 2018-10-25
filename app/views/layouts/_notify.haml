@@ -1,0 +1,12 @@
+-# Rails flash messages styled for Bootstrap 3.0
+- flash.to_hash.slice('notice', 'alert').each do |name, msg|
+  - if msg.is_a?(String) and msg.present?
+    :javascript
+      $.notify({
+        message: '#{msg}'
+      },{
+        type: '#{name.to_s == 'notice' ? 'success' : 'danger'}',
+        showProgressbar: false,
+        offset: 0,
+        template: '<div data-notify="container" class="col-sm-9 col-md-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+      });

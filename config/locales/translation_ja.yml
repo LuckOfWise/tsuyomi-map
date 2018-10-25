@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    models:
+      strength: 力  #g
+      user: ユーザー  #g
+      membership: membership  #g
+      team: team  #g
+
+    attributes:
+      strength:
+        nature: つよみ  #g
+        position: ポジション  #g
+        user: :activerecord.models.user  #g
+
+      user:
+        email: Eメール  #g
+        icon_url: アイコンのURL  #g
+        name: 名  #g
+        provider: プロバイダ  #g
+        strengths: 強み  #g
+        uid: ウイド  #g
+        memberships: memberships  #g
+        teams: teams  #g
+
+      membership:
+        team: :activerecord.models.team  #g
+        user: :activerecord.models.user  #g
+
+      team:
+        memberships: memberships  #g
+        name: チーム名  #g
+        users: users  #g

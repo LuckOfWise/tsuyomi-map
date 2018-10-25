@@ -1,0 +1,10 @@
+.container.py-3
+  .col-md-6.offset-md-3
+    .card.card-block
+      .card-body
+        %h4.mb-3 #{@team.name}への招待
+        .row
+          .col-6
+            = link_to '参加する', team_invitations_path(team_token: @team.token), method: :post, class: 'btn btn-primary btn-block'
+          .col-6
+            = link_to '参加しない', mypage_url, class: 'btn btn-danger btn-block'

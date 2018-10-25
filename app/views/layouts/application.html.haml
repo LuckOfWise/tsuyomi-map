@@ -1,0 +1,19 @@
+!!!
+%html{lang: 'ja'}
+  %head
+    = render 'layouts/meta_tags'
+    = stylesheet_link_tag  'application', media: 'all'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    %meta{name: 'theme-color', content: '#373a3c'}
+
+  %body
+    = render 'layouts/notify'
+    = render 'layouts/header'
+    %main
+      - if content_for?(:title)
+        .page-title__wrapper
+          .container
+            %h1.page-title= yield :title
+      = yield

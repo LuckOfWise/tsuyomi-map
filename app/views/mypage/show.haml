@@ -1,0 +1,21 @@
+.container.py-5
+
+  %table.table.table-bordered.strength-table.mb-5
+    %tr
+      %th ユーザー名
+      - (1..5).each do |index|
+        %th= index
+    - strengths = current_user.strengths.order(:position).limit(5)
+    - if strengths.count == 5
+      %tr
+        %td.strength-table__user-cell{width: 200}
+          = image_tag current_user.icon_url
+          = current_user.name
+        - strengths.each do |strength|
+          %td.strength-table__cell.js-strength{data: {value: strength.nature}, width: 200, style: "background: #{strength.color}"}= strength.nature
+
+  %h5 つよみマップ一覧
+  .list-group
+    - current_user.teams.order(:id).each do |team|
+      = link_to team.name, team_path(team), class: 'list-group-item list-group-item-action'
+    = link_to '新しいつよみマップを作成する', new_team_path, class: 'list-group-item list-group-item-action list-group-item-primary'

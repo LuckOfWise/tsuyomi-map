@@ -1,0 +1,194 @@
+$markdown_main_color: #ddd
+$markdown_dark_color: #333
+$markdown_faint_color: #eee
+$markdown_accent_color: #4d5053
+
+@mixin base_link_style
+  color: #0088cc
+  text-decoration: none
+  word-break: break-all
+
+@mixin base_border_radius
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+
+@mixin base_line_height
+  line-height: 1.8em
+
+@mixin base_margin
+  margin: 0 0 20px
+  &:last-child
+    margin-bottom: 0
+
+@mixin narrow_margin
+  margin: 0 0 10px
+
+@mixin list_margin
+  margin: 20px 0 20px 1em
+
+@mixin nested_list_margin
+  margin: 10px 0 10px 30px
+
+@mixin multiline_ellipsis
+  -webkit-line-clamp: 2
+  -moz-line-clamp: 2
+  line-clamp: 2
+  @include display-box
+  @include box-orient(vertical)
+  overflow: hidden
+  white-space: normal
+  text-overflow: ellipsis
+  word-break: break-all
+
+.markdown
+  @include base_line_height
+  font-size: 14px
+  color: $markdown_dark_color
+
+  a
+    @include base_link_style
+    &:visited
+      @include base_link_style
+    &:hover
+      text-decoration: underline
+
+  p
+    @include base_margin
+    &:last-child
+      margin: 0
+  small
+    font-size: 85%
+
+  strong
+    font-weight: bold
+
+  em
+    font-style: italic
+
+  h1, h2, h3, h4, h5, h6
+    @include base_line_height
+    @include base_margin
+    font-family: inherit
+    font-weight: bold
+    color: $markdown_accent_color
+    text-rendering: optimizelegibility
+
+  h1, h2, h3
+    line-height: 1.2em
+    &:not(:first-child)
+      margin-top: 40px
+
+  h1
+    font-size: 24px
+    border-bottom: 2px solid $markdown_accent_color
+    padding-bottom: 6px
+
+  h2
+    font-size: 22px
+
+  h3
+    font-size: 20px
+
+  h4
+    font-size: 16px
+
+  h5, h6
+    font-size: 14px
+
+  ul, ol
+    @include list_margin
+    padding: 0
+
+  ul
+    ul, ol
+      @include nested_list_margin
+
+  ol
+    ol, ul
+      @include nested_list_margin
+
+  li
+    @include base_line_height
+    margin-bottom: 12px
+
+  hr
+    border: 1px solid $markdown_main_color
+
+  blockquote
+    background-color: #eeeeee
+    padding: 1em 1em 1em 2em
+    position: relative
+
+  blockquote:before
+    content: "“"
+    font-size: 400%
+    line-height: 1em
+    font-family: "ＭＳ Ｐゴシック",sans-serif
+    color: #999
+    position: absolute
+    left: 0
+    top: 0
+
+
+  code, pre
+    @include base_border_radius
+    padding: 0 3px 2px
+    font-size: 12px
+    color: $markdown_dark_color
+
+  code
+    padding: 2px 4px
+    white-space: nowrap
+    background-color: $markdown_faint_color
+    border: 1px solid $markdown_dark_color
+
+  pre
+    @include base_border_radius
+    @include base_line_height
+    @include base_margin
+    display: block
+    padding: 9.5px
+    word-break: break-all
+    word-wrap: break-word
+    white-space: pre
+    white-space: pre-wrap
+    background-color: $markdown_faint_color
+    border: $markdown_dark_color
+    code
+      padding: 0
+      color: inherit
+      white-space: pre
+      white-space: pre-wrap
+      background-color: transparent
+      border: 0
+
+  table
+    @include base_border_radius
+    width: 100%
+    margin-bottom: 20px
+    border: 1px solid $markdown_dark_color
+    border-collapse: collapse
+    border-left: 0
+    th, td
+      padding: 8px
+      line-height: 20px
+      text-align: left
+      vertical-align: top
+      border-top: 1px solid $markdown_dark_color
+      border-left: 1px solid $markdown_dark_color
+    th
+      font-weight: bold
+    thead
+      th
+        vertical-align: bottom
+      &:first-child tr:first-child
+        th, td
+          border-top: 0
+
+  img
+    max-width: 100%
+
+  h1, h2, h3, h4, h5, h6
+    > a > i.fa.fa-link
+      display: none

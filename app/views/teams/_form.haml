@@ -1,0 +1,8 @@
+.col-md-6.offset-md-3
+  .card.card-block
+    .card-body
+      = simple_form_for(@team) do |f|
+        = f.error_notification
+        = f.input :name
+        .text-center.pr-5.pl-5
+          = f.button :submit, '保存する', class: 'btn btn-primary btn-lg btn-block', data: { disable_with: t('views.sending', rescue_format: :text) }
